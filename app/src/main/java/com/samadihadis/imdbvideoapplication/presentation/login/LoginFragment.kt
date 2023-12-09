@@ -23,6 +23,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setOnClickListener()
     }
+
     private fun setOnClickListener() {
         binding.loginButton.setOnClickListener {
             val userName = binding.userNameEditText.text.toString()
@@ -32,4 +33,5 @@ class LoginFragment : Fragment() {
             }
         }
     }
+
 }

@@ -4,9 +4,19 @@
     android:id="@+id/nav_main"
     app:startDestination="@id/introFragment">
 
-    <fragment android:id="@+id/introFragment"
+    <fragment
+        android:id="@+id/introFragment"
         android:name="com.samadihadis.imdbvideoapplication.presentation.intro.IntroFragment"
         android:label="IntroFragment">
+        <action
+            android:id="@+id/action_to_loginFragment"
+            app:destination="@+id/loginFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.samadihadis.imdbvideoapplication.presentation.login.LoginFragment"
+        android:label="LoginFragment">
 
     </fragment>
 
