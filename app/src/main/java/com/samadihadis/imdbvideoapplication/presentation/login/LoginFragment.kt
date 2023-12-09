@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.samadihadis.imdbvideoapplication.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -28,10 +29,24 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             val userName = binding.userNameEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
-            if (userName.isEmpty() || password.isEmpty()) {
+            if (userName.isEmpty() || password.isEmpty()) {// TODO: Fix password empty state
                 binding.userNameEditText.error = "Please Enter User Name Or Password"
+            } else if (
+                (userName == userName1 && password == password1) ||
+                (userName == userName2 && password == password2)
+            ) {
+                LoginFragmentDirections.actionToVideoListFragment()
+            } else {
+                Toast.makeText(requireContext(), "UserName or Password is incorrect!", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    companion object {
+        val userName1 = "Hadis"
+        val userName2 = "Hossein"
+        val password1 = "Hh123456"
+        val password2 = "Kk123456"
     }
 
 }
