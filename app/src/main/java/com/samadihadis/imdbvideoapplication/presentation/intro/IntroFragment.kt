@@ -1,4 +1,4 @@
-package com.samadihadis.imdbvideoapplication
+package com.samadihadis.imdbvideoapplication.presentation.intro
 
 
 import android.os.Bundle

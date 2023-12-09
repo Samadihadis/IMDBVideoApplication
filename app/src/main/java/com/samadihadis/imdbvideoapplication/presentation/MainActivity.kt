@@ -1,7 +1,8 @@
-package com.samadihadis.imdbvideoapplication
+package com.samadihadis.imdbvideoapplication.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.samadihadis.imdbvideoapplication.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
