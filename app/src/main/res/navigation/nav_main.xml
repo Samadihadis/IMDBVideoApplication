@@ -30,4 +30,11 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/videoDetailFragment"
+        android:name="com.samadihadis.imdbvideoapplication.presentation.detail.VideoDetailFragment"
+        android:label="VideoDetailFragment">
+
+    </fragment>
+
 </navigation>
