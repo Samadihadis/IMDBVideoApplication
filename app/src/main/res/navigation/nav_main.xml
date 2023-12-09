@@ -17,6 +17,16 @@
         android:id="@+id/loginFragment"
         android:name="com.samadihadis.imdbvideoapplication.presentation.login.LoginFragment"
         android:label="LoginFragment">
+        <action
+            android:id="@+id/action_to_videoListFragment"
+            app:destination="@+id/videoListFragment"/>
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/videoListFragment"
+        android:name="com.samadihadis.imdbvideoapplication.presentation.list.VideoListFragment"
+        android:label="VideoListFragment">
 
     </fragment>
 
