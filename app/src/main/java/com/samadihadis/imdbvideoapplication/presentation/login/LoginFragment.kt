@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
             val userName = binding.userNameEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
             if (userName.isEmpty() || password.isEmpty()) {// TODO: Fix password empty state
-                binding.userNameEditText.error = "Please Enter User Name Or Password"
+                binding.userNameEditText.error = "Please Enter UserName Or Password"
             } else if (
                 (userName == userName1 && password == password1) ||
                 (userName == userName2 && password == password2)
