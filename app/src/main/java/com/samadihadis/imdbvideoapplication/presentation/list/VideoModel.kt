@@ -2,7 +2,7 @@ package com.samadihadis.imdbvideoapplication.presentation.list
 
 import android.net.Uri
 
-data class Video(
+data class VideoModel(
 
     val imageVideo: Uri,
     val title: String,

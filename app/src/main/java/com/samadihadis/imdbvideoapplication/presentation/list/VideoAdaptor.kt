@@ -9,9 +9,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.samadihadis.imdbvideoapplication.R
 
-class VideoAdaptor(var videoList: List<Video>, private var context: Context) :
+class VideoAdaptor(var videoList: List<VideoModel>, private var context: Context) :
     RecyclerView.Adapter<VideoAdaptor.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -40,12 +42,18 @@ class VideoAdaptor(var videoList: List<Video>, private var context: Context) :
     }
 
     override fun getItemCount(): Int {
-        return  videoList.size
+        return videoList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-
+            title.text = videoList[position].title
+            description.text = videoList[position].description
+            Glide.with(context)
+                .load(videoList[position].imageVideo)
+                .error(R.drawable.video)
+                .transform(CenterCrop(), RoundedCorners(40))
+                .into(image)
         }
     }
 }
