@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.samadihadis.imdbvideoapplication.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -35,7 +36,7 @@ class LoginFragment : Fragment() {
                 (userName == userName1 && password == password1) ||
                 (userName == userName2 && password == password2)
             ) {
-                LoginFragmentDirections.actionToVideoListFragment()
+                findNavController().navigate(LoginFragmentDirections.actionToVideoListFragment())
             } else {
                 Toast.makeText(requireContext(), "UserName or Password is incorrect!", Toast.LENGTH_LONG).show()
             }
