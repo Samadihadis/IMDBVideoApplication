@@ -37,4 +37,24 @@
         app:layout_constraintStart_toEndOf="@+id/videoImageView"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
+    <ImageView
+        android:id="@+id/isFavorite"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/favorite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/titleTextView"
+        app:layout_constraintStart_toEndOf="@+id/titleTextView"
+        />
+
+    <ImageView
+        android:id="@+id/goNext"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/descriptionTextView"
+        app:layout_constraintStart_toEndOf="@+id/descriptionTextView"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
