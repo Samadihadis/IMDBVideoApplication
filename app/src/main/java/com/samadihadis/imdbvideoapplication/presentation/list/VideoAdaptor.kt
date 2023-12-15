@@ -50,7 +50,7 @@ class VideoAdaptor(var videoList: List<VideoModel>, private var context: Context
             title.text = videoList[position].title
             description.text = videoList[position].description
             Glide.with(context)
-                .load(videoList[position].imageVideo)
+                .load(videoList[position].bannerImageLink)
                 .error(R.drawable.video)
                 .transform(CenterCrop(), RoundedCorners(40))
                 .into(image)

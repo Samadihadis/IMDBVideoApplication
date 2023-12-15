@@ -25,6 +25,8 @@ class VideoListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        prepareData()
         initialRecycleView()
     }
 
@@ -38,8 +40,33 @@ class VideoListFragment : Fragment() {
             DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         recycleView.addItemDecoration(dividerItemDecoration)
 
-        val musicAdaptor = VideoAdaptor(videoList, requireContext())
-        recycleView.adapter = musicAdaptor
+        val videoAdaptor = VideoAdaptor(videoList, requireContext())
+        recycleView.adapter = videoAdaptor
+    }
+
+    private fun prepareData() {
+        videoList.add(
+            VideoModel(
+                title = "title1",
+                description = "description1",
+                bannerImageLink = "link1",
+                author = "author1",
+                buildYear = 2020,
+                videoLink = "link2",
+                isFavorite = false
+            )
+        )
+        videoList.add(
+            VideoModel(
+                title = "title2",
+                description = "description2",
+                bannerImageLink = "link1",
+                author = "author2",
+                buildYear = 2023,
+                videoLink = "link2",
+                isFavorite = true
+            )
+        )
     }
 
 }
