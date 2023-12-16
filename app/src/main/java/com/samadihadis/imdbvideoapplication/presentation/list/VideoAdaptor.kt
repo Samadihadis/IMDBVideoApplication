@@ -1,19 +1,24 @@
 package com.samadihadis.imdbvideoapplication.presentation.list
 
 import android.content.Context
-import android.provider.MediaStore.Video
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.samadihadis.imdbvideoapplication.R
+import androidx.constraintlayout.widget.ConstraintLayout as ConstraintLayout
 
-class VideoAdaptor(var videoList: List<VideoModel>, private var context: Context) :
+class VideoAdaptor(
+    private var videoList: List<VideoModel>,
+    private val navController: NavController,
+
+) :
     RecyclerView.Adapter<VideoAdaptor.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -23,6 +28,8 @@ class VideoAdaptor(var videoList: List<VideoModel>, private var context: Context
         val description: TextView
         val isFavorite: ImageView
         val goDetail: ImageView
+        val rootLayout: ConstraintLayout
+
 
         init {
             view.apply {
@@ -31,6 +38,7 @@ class VideoAdaptor(var videoList: List<VideoModel>, private var context: Context
                 description = findViewById(R.id.descriptionTextView)
                 isFavorite = findViewById(R.id.isFavorite)
                 goDetail = findViewById(R.id.goDetail)
+                rootLayout = findViewById(R.id.itemVideo)
             }
         }
     }
@@ -49,11 +57,18 @@ class VideoAdaptor(var videoList: List<VideoModel>, private var context: Context
         holder.apply {
             title.text = videoList[position].title
             description.text = videoList[position].description
-            Glide.with(context)
-                .load(videoList[position].bannerImageLink)
-                .error(R.drawable.video)
-                .transform(CenterCrop(), RoundedCorners(40))
-                .into(image)
+            //Glide.with(context)
+              //  .load(videoList[position].bannerImageLink)
+                //.error(R.drawable.video)
+                //.transform(CenterCrop(), RoundedCorners(40))
+                //.into(image)
+            rootLayout.setOnClickListener {
+                navController.navigate(
+                    VideoListFragmentDirections.actionToVideoDetailFragment(
+                        videoList[position]
+                    )
+                )
+            }
         }
     }
 }
