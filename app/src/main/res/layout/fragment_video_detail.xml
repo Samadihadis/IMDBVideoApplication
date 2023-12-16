@@ -49,7 +49,6 @@
         android:text="from"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:lines=""
         />
 
     <com.google.android.material.textview.MaterialTextView
