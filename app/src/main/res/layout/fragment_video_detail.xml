@@ -128,6 +128,16 @@
         />
 
 
+    <VideoView
+        android:id="@+id/videoPlayer"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filmBuildYearId"
+        android:layout_marginTop="20dp"
+        />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
