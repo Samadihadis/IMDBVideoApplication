@@ -22,7 +22,6 @@
             app:destination="@+id/videoListFragment" />
     </fragment>
 
-
     <fragment
         android:id="@+id/videoListFragment"
         android:name="com.samadihadis.imdbvideoapplication.presentation.list.VideoListFragment"
@@ -30,7 +29,6 @@
         <action
             android:id="@+id/action_to_videoDetailFragment"
             app:destination="@+id/videoDetailFragment" />
-
     </fragment>
 
     <fragment
