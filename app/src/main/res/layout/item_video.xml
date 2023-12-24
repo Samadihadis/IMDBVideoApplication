@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/videoImageView"
         android:layout_width="120dp"
         android:layout_height="120dp"
@@ -38,7 +38,7 @@
         app:layout_constraintStart_toEndOf="@+id/videoImageView"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/favoriteImageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toStartOf="@+id/arrowImageView"
         app:layout_constraintTop_toTopOf="@id/arrowImageView" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/arrowImageView"
         android:layout_width="30dp"
         android:layout_height="30dp"

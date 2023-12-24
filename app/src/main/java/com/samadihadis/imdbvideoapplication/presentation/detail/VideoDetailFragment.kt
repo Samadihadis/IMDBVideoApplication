@@ -10,7 +10,7 @@ import com.samadihadis.imdbvideoapplication.databinding.FragmentVideoDetailBindi
 
 class VideoDetailFragment : Fragment() {
 
-    val args by navArgs<VideoDetailFragmentArgs>()
+    private val args by navArgs<VideoDetailFragmentArgs>()
 
     private lateinit var binding: FragmentVideoDetailBinding
 

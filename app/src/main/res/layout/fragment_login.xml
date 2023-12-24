@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/loginImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -49,7 +49,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginImageView" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/applicationVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

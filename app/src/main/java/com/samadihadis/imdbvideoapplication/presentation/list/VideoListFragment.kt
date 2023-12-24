@@ -68,6 +68,40 @@ class VideoListFragment : Fragment() {
                 isFavorite = true
             )
         )
+        videoList.add(
+            VideoModel(
+                title = "title3",
+                description = "description3",
+                bannerImageLink = "link3",
+                author = "author3",
+                buildYear = 2020,
+                videoLink = "link3",
+                isFavorite = false
+            )
+        )
+        videoList.add(
+            VideoModel(
+                title = "title4",
+                description = "description4",
+                bannerImageLink = "link4",
+                author = "author4",
+                buildYear = 2021,
+                videoLink = "link4",
+                isFavorite = false
+            )
+        )
+        videoList.add(
+            VideoModel(
+                title = "title5",
+                description = "description5",
+                bannerImageLink = "link5",
+                author = "author5",
+                buildYear = 2019,
+                videoLink = "link5",
+                isFavorite = true
+            )
+        )
+
     }
 
     private fun cleanList() {

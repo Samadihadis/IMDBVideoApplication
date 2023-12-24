@@ -16,7 +16,7 @@
         tools:title="from"
         app:titleCentered="true" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewDetail"
         android:layout_width="match_parent"
         android:layout_height="200dp"

@@ -35,8 +35,8 @@ class LoginFragment : Fragment() {
             } else if (password.isEmpty()) {
                 binding.passwordEditText.error = "Please Enter Password"
             } else if (
-                (userName == userName1 && password == password1) ||
-                (userName == userName2 && password == password2)
+                (userName == USER_NAME1 && password == PASSWORD1) ||
+                (userName == USER_NAME2 && password == PASSWORD2)
             ) {
                 findNavController().navigate(LoginFragmentDirections.actionToVideoListFragment())
             } else {
@@ -50,10 +50,10 @@ class LoginFragment : Fragment() {
     }
 
     companion object {
-        val userName1 = "Hadis"
-        val userName2 = "Hossein"
-        val password1 = "Hh123456"
-        val password2 = "Kk123456"
+        const val USER_NAME1 = "Hadis"
+        const val USER_NAME2 = "Hossein"
+        const val PASSWORD1 = "Hh123456"
+        const val PASSWORD2 = "Kk123456"
     }
 
 }
