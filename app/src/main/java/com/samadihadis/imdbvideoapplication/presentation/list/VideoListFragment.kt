@@ -15,22 +15,20 @@ import com.samadihadis.imdbvideoapplication.databinding.FragmentVideoListBinding
 class VideoListFragment : Fragment() {
 
     private lateinit var binding: FragmentVideoListBinding
-    private val videoList = mutableListOf<VideoModel>()
+    private var videoList = mutableListOf<VideoModel>()
+    private var videoAdaptor : VideoAdaptor? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentVideoListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        cleanList()
         prepareData()
         initialRecycleView()
-
     }
 
 
@@ -43,7 +41,7 @@ class VideoListFragment : Fragment() {
             DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
         recycleView.addItemDecoration(dividerItemDecoration)
 
-        val videoAdaptor = VideoAdaptor(videoList, findNavController())
+        videoAdaptor = VideoAdaptor(videoList, findNavController())
         recycleView.adapter = videoAdaptor
     }
 
@@ -70,6 +68,11 @@ class VideoListFragment : Fragment() {
                 isFavorite = true
             )
         )
+    }
+
+    private fun cleanList() {
+        videoList.clear()
+        videoAdaptor?.notifyDataSetChanged()
     }
 
 }
