@@ -30,15 +30,21 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             val userName = binding.userNameEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
-            if (userName.isEmpty() || password.isEmpty()) {// TODO: Fix password empty state
-                binding.userNameEditText.error = "Please Enter UserName Or Password"
+            if (userName.isEmpty()) {
+                binding.userNameEditText.error = "Please Enter UserName"
+            } else if (password.isEmpty()) {
+                binding.passwordEditText.error = "Please Enter Password"
             } else if (
                 (userName == userName1 && password == password1) ||
                 (userName == userName2 && password == password2)
             ) {
                 findNavController().navigate(LoginFragmentDirections.actionToVideoListFragment())
             } else {
-                Toast.makeText(requireContext(), "UserName or Password is incorrect!", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    "UserName or Password is incorrect!",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
