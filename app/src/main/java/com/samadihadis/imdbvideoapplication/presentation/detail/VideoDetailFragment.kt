@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.samadihadis.imdbvideoapplication.R
 import com.samadihadis.imdbvideoapplication.databinding.FragmentVideoDetailBinding
 
 class VideoDetailFragment : Fragment() {
@@ -29,6 +30,11 @@ class VideoDetailFragment : Fragment() {
             filmDescriptionId.text = args.videoModel.description
             filmAuthorId.text = args.videoModel.author
             filmBuildYearId.text = args.videoModel.buildYear.toString()
+            if (args.videoModel.isFavorite) {
+                favoriteImageView.setImageResource(R.drawable.icon_fav_fill)
+            } else {
+                favoriteImageView.setImageResource(R.drawable.icon_fav_empty)
+            }
         }
     }
 
