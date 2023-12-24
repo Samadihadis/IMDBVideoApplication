@@ -34,6 +34,9 @@ class VideoAdaptor(
                 .error(R.drawable.icon_video)
                 .transform(CenterCrop(), RoundedCorners(40))
                 .into(avatarImageView)
+            favoriteImageView.setOnClickListener {
+
+            }
             rootLayout.setOnClickListener {
                 navController.navigate(
                     VideoListFragmentDirections.actionToVideoDetailFragment(
