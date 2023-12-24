@@ -34,8 +34,21 @@ class VideoAdaptor(
                 .error(R.drawable.icon_video)
                 .transform(CenterCrop(), RoundedCorners(40))
                 .into(avatarImageView)
+            favoriteImageView.setImageResource(
+                if (videoList[position].isFavorite) {
+                    R.drawable.icon_fav_fill
+                } else {
+                    R.drawable.icon_fav_empty
+                }
+            )
             favoriteImageView.setOnClickListener {
-
+                if (videoList[position].isFavorite) {
+                    videoList[position].isFavorite = false
+                    favoriteImageView.setImageResource(R.drawable.icon_fav_empty)
+                } else {
+                    videoList[position].isFavorite = true
+                    favoriteImageView.setImageResource(R.drawable.icon_fav_fill)
+                }
             }
             rootLayout.setOnClickListener {
                 navController.navigate(

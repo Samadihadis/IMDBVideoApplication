@@ -6,7 +6,7 @@ data class VideoModel(
     val bannerImageLink: String,
     val title: String,
     val description: String,
-    val isFavorite: Boolean ,
+    var isFavorite: Boolean ,
     val author : String ,
     val buildYear : Int ,
     val videoLink : String
