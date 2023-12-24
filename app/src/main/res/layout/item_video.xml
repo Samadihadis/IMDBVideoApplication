@@ -33,8 +33,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Description"
+        android:maxLength="25"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/videoImageView"
         app:layout_constraintStart_toEndOf="@+id/videoImageView"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
@@ -43,17 +43,20 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/icon_fav_fill"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/titleTextView"
-        app:layout_constraintTop_toTopOf="@id/titleTextView" />
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/arrowImageView"
+        app:layout_constraintTop_toTopOf="@id/arrowImageView"
+        app:layout_constraintBottom_toBottomOf="@+id/arrowImageView"/>
 
     <ImageView
-        android:id="@+id/goDetail"
+        android:id="@+id/arrowImageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/icon_arrow_next"
+        android:src="@drawable/icons_arrows_compact_small_right_regular"
+        android:layout_marginEnd="16dp"
+        app:tint="#838181"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/descriptionTextView"
-        app:layout_constraintTop_toTopOf="@id/descriptionTextView" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
