@@ -39,7 +39,7 @@
         android:label="VideoDetailFragment">
         <argument
             android:name="videoModel"
-            app:argType="com.samadihadis.imdbvideoapplication.presentation.list.VideoModel"
+            app:argType="com.samadihadis.imdbvideoapplication.data.VideoModel"
             />
 
     </fragment>

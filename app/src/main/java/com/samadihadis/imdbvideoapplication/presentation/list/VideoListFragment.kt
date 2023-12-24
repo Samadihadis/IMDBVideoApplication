@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.samadihadis.imdbvideoapplication.data.VideoModel
 import com.samadihadis.imdbvideoapplication.databinding.FragmentVideoListBinding
 
 class VideoListFragment : Fragment() {
