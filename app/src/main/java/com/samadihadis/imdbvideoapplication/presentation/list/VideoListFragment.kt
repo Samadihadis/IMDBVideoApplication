@@ -1,6 +1,7 @@
 package com.samadihadis.imdbvideoapplication.presentation.list
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.samadihadis.imdbvideoapplication.data.VideoModel
 import com.samadihadis.imdbvideoapplication.databinding.FragmentVideoListBinding
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import org.json.JSONObject
+import java.io.IOException
 
 class VideoListFragment : Fragment() {
 
@@ -27,10 +35,10 @@ class VideoListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cleanList()
-        prepareData()
         initialRecycleView()
-    }
+        // https://github.com/Samadihadis/WeatherApplication/blob/master/app/src/main/java/com/samadihadis/weatherapplication/MainActivity.kt
 
+    }
 
     private fun initialRecycleView() {
         val recycleView = binding.recyclerViewVideo
@@ -44,66 +52,6 @@ class VideoListFragment : Fragment() {
         videoAdaptor = VideoAdaptor(videoList, findNavController())
         recycleView.adapter = videoAdaptor
     }
-
-    private fun prepareData() {
-        videoList.add(
-            VideoModel(
-                title = "title1",
-                description = "description1",
-                bannerImageLink = "link1",
-                author = "author1",
-                buildYear = 2020,
-                videoLink = "link2",
-                isFavorite = false
-            )
-        )
-        videoList.add(
-            VideoModel(
-                title = "title2",
-                description = "description2",
-                bannerImageLink = "link1",
-                author = "author2",
-                buildYear = 2023,
-                videoLink = "link2",
-                isFavorite = true
-            )
-        )
-        videoList.add(
-            VideoModel(
-                title = "title3",
-                description = "description3",
-                bannerImageLink = "link3",
-                author = "author3",
-                buildYear = 2020,
-                videoLink = "link3",
-                isFavorite = false
-            )
-        )
-        videoList.add(
-            VideoModel(
-                title = "title4",
-                description = "description4",
-                bannerImageLink = "link4",
-                author = "author4",
-                buildYear = 2021,
-                videoLink = "link4",
-                isFavorite = false
-            )
-        )
-        videoList.add(
-            VideoModel(
-                title = "title5",
-                description = "description5",
-                bannerImageLink = "link5",
-                author = "author5",
-                buildYear = 2019,
-                videoLink = "link5",
-                isFavorite = true
-            )
-        )
-
-    }
-
     private fun cleanList() {
         videoList.clear()
         videoAdaptor?.notifyDataSetChanged()
