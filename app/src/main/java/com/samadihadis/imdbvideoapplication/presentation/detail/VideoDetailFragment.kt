@@ -32,7 +32,7 @@ class VideoDetailFragment : Fragment() {
             yearValueTextView.text = args.movieModel.release_date
             adultValueTextView.text = args.movieModel.adult.toString()
             Glide.with(requireContext())
-                .load("https://image.tmdb.org/t/p/w5005" +args.movieModel.backdrop_path)
+                .load("https://image.tmdb.org/t/p/w500" +args.movieModel.backdrop_path)
                 .error(R.drawable.banner_image_placeholder)
                 .into(bannerImageView)
         }
