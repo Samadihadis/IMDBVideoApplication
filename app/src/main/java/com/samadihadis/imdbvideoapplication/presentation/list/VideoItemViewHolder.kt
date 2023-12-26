@@ -12,7 +12,6 @@ class VideoItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val avatarImageView: ImageView
     val titleTextView: TextView
     val descriptionTextView: TextView
-    val favoriteImageView: ImageView
     val rootLayout: ConstraintLayout
 
     init {
@@ -20,7 +19,6 @@ class VideoItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             avatarImageView = findViewById(R.id.videoImageView)
             titleTextView = findViewById(R.id.titleTextView)
             descriptionTextView = findViewById(R.id.descriptionTextView)
-            favoriteImageView = findViewById(R.id.favoriteImageView)
             rootLayout = findViewById(R.id.itemVideo)
         }
     }
