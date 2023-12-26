@@ -17,103 +17,87 @@
         app:titleCentered="true" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageViewDetail"
+        android:id="@+id/bannerImageView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#BECFEF"
-        android:src="@drawable/icon_video"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/banner_image_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/favoriteImageView"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_margin="16dp"
-        android:src="@drawable/icon_fav_empty"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textViewFilmDescription"
+        android:id="@+id/adultTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:text="Film Description : "
+        android:text="Adult: "
         android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewDetail" />
+        app:layout_constraintTop_toBottomOf="@+id/bannerImageView" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/filmDescriptionId"
+        android:id="@+id/adultValueTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        tools:text="from"
+        tools:text="true"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewFilmDescription"
-        app:layout_constraintStart_toEndOf="@+id/textViewFilmDescription"
-        app:layout_constraintTop_toTopOf="@+id/textViewFilmDescription" />
+        app:layout_constraintBottom_toBottomOf="@+id/adultTitleTextView"
+        app:layout_constraintStart_toEndOf="@+id/adultTitleTextView"
+        app:layout_constraintTop_toTopOf="@+id/adultTitleTextView" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textViewAuthor"
+        android:id="@+id/yearTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="Film Author : "
+        android:text="Year: "
         android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFilmDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/adultTitleTextView" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/filmAuthorId"
+        android:id="@+id/yearValueTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        tools:text="Lindsay Dunn"
+        tools:text="February 20, 2022"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewAuthor"
-        app:layout_constraintStart_toEndOf="@+id/textViewAuthor"
-        app:layout_constraintTop_toTopOf="@+id/textViewAuthor" />
+        app:layout_constraintBottom_toBottomOf="@+id/yearTitleTextView"
+        app:layout_constraintStart_toEndOf="@+id/yearTitleTextView"
+        app:layout_constraintTop_toTopOf="@+id/yearTitleTextView" />
+
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textViewFilmBuildYear"
+        android:id="@+id/descriptionTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="Film Build Year : "
+        android:text="Overview: "
         android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAuthor" />
+        app:layout_constraintTop_toBottomOf="@+id/yearValueTextView" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/filmBuildYearId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        tools:text="February 20, 2022 "
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewFilmBuildYear"
-        app:layout_constraintStart_toEndOf="@+id/textViewFilmBuildYear"
-        app:layout_constraintTop_toTopOf="@+id/textViewFilmBuildYear" />
-
-    <VideoView
-        android:id="@+id/videoPlayer"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/descriptionValueTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        tools:text="sample text .."
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filmBuildYearId" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTitleTextView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
