@@ -36,8 +36,8 @@
         android:name="com.samadihadis.imdbvideoapplication.presentation.detail.VideoDetailFragment"
         android:label="VideoDetailFragment">
         <argument
-            android:name="videoModel"
-            app:argType="com.samadihadis.imdbvideoapplication.data.VideoModel" />
+            android:name="movieModel"
+            app:argType="com.samadihadis.imdbvideoapplication.data.MovieModel" />
     </fragment>
 
 </navigation>
