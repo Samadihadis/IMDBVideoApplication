@@ -102,7 +102,7 @@
 
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarAverage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

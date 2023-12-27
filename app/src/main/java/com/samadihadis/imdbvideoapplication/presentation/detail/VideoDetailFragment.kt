@@ -36,7 +36,7 @@ class VideoDetailFragment : Fragment() {
                 .load("https://image.tmdb.org/t/p/w500" +args.movieModel.backdrop_path)
                 .error(R.drawable.banner_image_placeholder)
                 .into(bannerImageView)
-            progressBar.progress = args.movieModel.vote_average.toInt()
+            progressBarAverage.progress = args.movieModel.vote_average.toInt()
         }
     }
 
