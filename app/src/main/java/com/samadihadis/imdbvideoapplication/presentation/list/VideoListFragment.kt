@@ -1,11 +1,13 @@
 package com.samadihadis.imdbvideoapplication.presentation.list
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LinearInterpolator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,10 +27,12 @@ class VideoListFragment : Fragment() {
 
     private lateinit var binding: FragmentVideoListBinding
     private var movieList = listOf<MovieModel>()
-    private var videoAdaptor : VideoAdaptor? = null
+    private var videoAdaptor: VideoAdaptor? = null
+    private var animation: ObjectAnimator? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         binding = FragmentVideoListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,9 +40,9 @@ class VideoListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cleanList()
+        initLoadingAnimator()
         initialRecycleView()
         getData()
-        // https://github.com/Samadihadis/WeatherApplication/blob/master/app/src/main/java/com/samadihadis/weatherapplication/MainActivity.kt
     }
 
     private fun initialRecycleView() {
@@ -63,6 +67,8 @@ class VideoListFragment : Fragment() {
 
 
     private fun getData() {
+        binding.progressBarLoading.visibility = View.VISIBLE
+        animation?.start()
         val client = OkHttpClient()
 
         val request = Request.Builder()
@@ -80,6 +86,8 @@ class VideoListFragment : Fragment() {
                 movieList = result.results
                 requireActivity().runOnUiThread {
                     setupAdapter()
+                    binding.progressBarLoading.visibility = View.GONE
+                    animation?.cancel()
                 }
             }
         })
@@ -87,8 +95,15 @@ class VideoListFragment : Fragment() {
 
     private fun getDataAndShowThem(rawData: String): PopularMovieModel {
         val gson = Gson()
-        val obj : PopularMovieModel = gson.fromJson(rawData, PopularMovieModel::class.java)
+        val obj: PopularMovieModel = gson.fromJson(rawData, PopularMovieModel::class.java)
         return obj
+    }
+
+    private fun initLoadingAnimator() {
+        animation = ObjectAnimator.ofFloat(binding.progressBarLoading, "rotation", 0f, 360f)
+        animation?.duration = 1000
+        animation?.repeatCount = ObjectAnimator.INFINITE
+        animation?.interpolator = LinearInterpolator()
     }
 
 }

@@ -28,10 +28,15 @@
         android:id="@+id/progressBarLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:indicatorSize="70dp"
+        app:trackThickness="6dp"
+        android:progress="70"
+        android:max="100"
+        app:indicatorColor="#605C5C"
+        app:trackColor="#CAC8C8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
