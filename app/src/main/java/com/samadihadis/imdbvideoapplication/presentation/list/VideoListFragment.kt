@@ -16,6 +16,8 @@ import com.google.gson.Gson
 import com.samadihadis.imdbvideoapplication.data.MovieModel
 import com.samadihadis.imdbvideoapplication.data.PopularMovieModel
 import com.samadihadis.imdbvideoapplication.databinding.FragmentVideoListBinding
+import com.samadihadis.imdbvideoapplication.util.gone
+import com.samadihadis.imdbvideoapplication.util.visible
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.OkHttpClient
@@ -67,7 +69,7 @@ class VideoListFragment : Fragment() {
 
 
     private fun getData() {
-        binding.progressBarLoading.visibility = View.VISIBLE
+        binding.progressBarLoading.visible()
         animation?.start()
         val client = OkHttpClient()
 
@@ -86,7 +88,7 @@ class VideoListFragment : Fragment() {
                 movieList = result.results
                 requireActivity().runOnUiThread {
                     setupAdapter()
-                    binding.progressBarLoading.visibility = View.GONE
+                    binding.progressBarLoading.gone()
                     animation?.cancel()
                 }
             }
