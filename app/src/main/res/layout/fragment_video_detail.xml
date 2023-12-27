@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -13,8 +13,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:title="from"
-        app:titleCentered="true" />
+        app:titleCentered="true"
+        tools:title="from" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/bannerImageView"
@@ -43,12 +43,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        tools:text="true"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/adultTitleTextView"
         app:layout_constraintStart_toEndOf="@+id/adultTitleTextView"
-        app:layout_constraintTop_toTopOf="@+id/adultTitleTextView" />
+        app:layout_constraintTop_toTopOf="@+id/adultTitleTextView"
+        tools:text="true" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/yearTitleTextView"
@@ -67,12 +67,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        tools:text="February 20, 2022"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/yearTitleTextView"
         app:layout_constraintStart_toEndOf="@+id/yearTitleTextView"
-        app:layout_constraintTop_toTopOf="@+id/yearTitleTextView" />
+        app:layout_constraintTop_toTopOf="@+id/yearTitleTextView"
+        tools:text="February 20, 2022" />
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -92,12 +92,23 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
-        tools:text="sample text .."
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTitleTextView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTitleTextView"
+        tools:text="sample text .." />
 
 
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bannerImageView"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:max="10"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
