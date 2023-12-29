@@ -10,7 +10,6 @@
         android:layout_height="?attr/actionBarSize"
         app:title="Video's"
         app:titleCentered="true"
-        android:background="#E6E2E2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
