@@ -2,12 +2,15 @@ package com.samadihadis.imdbvideoapplication.presentation.list
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +34,7 @@ class VideoListFragment : Fragment() {
     private var movieList = listOf<MovieModel>()
     private var videoAdaptor: VideoAdaptor? = null
     private var animation: ObjectAnimator? = null
+    private var doubleBackToExitPressedOnce = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -45,6 +49,7 @@ class VideoListFragment : Fragment() {
         initLoadingAnimator()
         initialRecycleView()
         getData()
+        onBackPressedCallback()
     }
 
     private fun initialRecycleView() {
@@ -108,4 +113,18 @@ class VideoListFragment : Fragment() {
         animation?.interpolator = LinearInterpolator()
     }
 
+    private fun onBackPressedCallback() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true ) {
+                override fun handleOnBackPressed() {
+                    if (doubleBackToExitPressedOnce) {
+                        requireActivity().finish()
+                        return
+                    }
+                    doubleBackToExitPressedOnce = true
+                    Toast.makeText(requireContext(), "click back button again", Toast.LENGTH_SHORT).show()
+                    Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+                }
+            })
+    }
 }
