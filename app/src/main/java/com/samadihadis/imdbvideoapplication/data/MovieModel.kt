@@ -1,20 +1,21 @@
 package com.samadihadis.imdbvideoapplication.data
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class MovieModel(
-    val id: Int,
-    val adult: Boolean,
-    val backdrop_path: String,
-    val genre_ids: List<Int>,
-    val original_language: String,
-    val original_title : String,
-    val overview : String,
-    val popularity : String,
-    val poster_path : String,
-    val release_date : String,
-    val title : String,
-    val video : Boolean,
-    val vote_average : Double,
-    val vote_count : Int
+    @SerializedName("id") val id: Int,
+    @SerializedName("adult") val adult: Boolean,
+    @SerializedName("backdrop_path") val backdropPath: String,
+    @SerializedName("genre_ids") val genreIds: List<Int>,
+    @SerializedName("original_language") val originalLanguage: String,
+    @SerializedName("original_title") val originalTitle : String,
+    @SerializedName("overview") val overview : String,
+    @SerializedName("popularity") val popularity : String,
+    @SerializedName("poster_path") val posterPath : String,
+    @SerializedName("release_date") val releaseDate : String,
+    @SerializedName("title") val title : String,
+    @SerializedName("video") val video : Boolean,
+    @SerializedName("vote_average") val voteAverage : Double,
+    @SerializedName("vote_count") val voteCount : Int
 ): Serializable

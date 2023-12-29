@@ -1,10 +1,11 @@
 package com.samadihadis.imdbvideoapplication.data
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class PopularMovieModel(
-    val page : Int ,
-    val results : List<MovieModel>,
-    val total_pages : Int,
-    val total_results : Int
+    @SerializedName("page") val page : Int,
+    @SerializedName("results") val results : List<MovieModel>,
+    @SerializedName("total_pages") val totalPages : Int,
+    @SerializedName("total_results") val totalResults : Int
 ): Serializable
