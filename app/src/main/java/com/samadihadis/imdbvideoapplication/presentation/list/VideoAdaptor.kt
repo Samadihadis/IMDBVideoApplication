@@ -31,7 +31,7 @@ class VideoAdaptor(
             descriptionTextView.text = videoList[position].overview
             Glide.with(holder.rootLayout.context)
                 .load("https://image.tmdb.org/t/p/w185" + videoList[position].backdrop_path)
-                .error(R.drawable.icon_video)
+                .placeholder(R.drawable.banner_image_placeholder)
                 .transform(CenterCrop(), RoundedCorners(40))
                 .into(avatarImageView)
             rootLayout.setOnClickListener {

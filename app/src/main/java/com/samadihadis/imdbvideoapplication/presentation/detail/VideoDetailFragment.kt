@@ -34,7 +34,7 @@ class VideoDetailFragment : Fragment() {
             adultValueTextView.text = args.movieModel.adult.toString()
             Glide.with(requireContext())
                 .load("https://image.tmdb.org/t/p/w500" +args.movieModel.backdrop_path)
-                .error(R.drawable.banner_image_placeholder)
+                .placeholder(R.drawable.banner_image_placeholder)
                 .into(bannerImageView)
             progressBarAverage.progress = args.movieModel.vote_average.toInt()
         }
