@@ -6,14 +6,15 @@ import android.view.View
  * Change view visibility with state
  */
 
-fun View.visibilityState(isShow : Boolean){
-    if(isShow) visible() else gone()
+fun View.visibilityState(isShow: Boolean) {
+    if (isShow) visible() else gone()
 }
+
 /**
  * Make View visible
  */
 
-fun View.visible(){
+fun View.visible() {
     visibility = View.VISIBLE
 }
 
@@ -21,7 +22,10 @@ fun View.visible(){
  * Makes View gone
  */
 
-fun View.gone(){
+fun View.gone() {
     visibility = View.GONE
 }
 
+fun View.invisible(){
+    visibility = View.INVISIBLE
+}
