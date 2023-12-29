@@ -10,7 +10,9 @@
         android:label="IntroFragment">
         <action
             android:id="@+id/action_to_loginFragment"
-            app:destination="@+id/loginFragment" />
+            app:destination="@+id/loginFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/introFragment"/>
     </fragment>
 
     <fragment
@@ -19,7 +21,9 @@
         android:label="LoginFragment">
         <action
             android:id="@+id/action_to_videoListFragment"
-            app:destination="@+id/videoListFragment" />
+            app:destination="@+id/videoListFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/loginFragment"/>
     </fragment>
 
     <fragment
