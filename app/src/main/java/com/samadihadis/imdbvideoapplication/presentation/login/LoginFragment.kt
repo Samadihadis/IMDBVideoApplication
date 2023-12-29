@@ -1,5 +1,6 @@
 package com.samadihadis.imdbvideoapplication.presentation.login
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +25,8 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setOnClickListener()
+        binding.applicationVersionTextView.text = "Version " +
+            requireContext().packageManager.getPackageInfo(requireContext().packageName, 0).versionName
     }
 
     private fun setOnClickListener() {
