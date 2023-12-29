@@ -20,7 +20,7 @@ Feature's:
 <h4>ScreenShots:</h4>
 <div>
   <img src="https://github.com/Samadihadis/IMDBVideoApplication/blob/master/screenshots/Version2_Page1_Intro.jpg" width="150">
-<img src="https://github.com/Samadihadis/IMDBVideoApplication/blob/master/screenshots/Version2_Page2_Login.jpg" width="150">
-<img src="https://github.com/Samadihadis/IMDBVideoApplication/blob/master/screenshots/Version2_Page3_VideoList.jpg" width="150">
-<img src="https://github.com/Samadihadis/IMDBVideoApplication/blob/master/screenshots/Version2_Page4_VideoDetail.jpg" width="150">
+  <img src="https://github.com/Samadihadis/IMDBVideoApplication/blob/master/screenshots/Version2_Page2_Login.jpg" width="150">
+  <img src="https://github.com/Samadihadis/IMDBVideoApplication/blob/master/screenshots/Version2_Page3_VideoList.jpg" width="150">
+  <img src="https://github.com/Samadihadis/IMDBVideoApplication/blob/master/screenshots/Version2_Page4_VideoDetail.jpg" width="150">
 </div>
