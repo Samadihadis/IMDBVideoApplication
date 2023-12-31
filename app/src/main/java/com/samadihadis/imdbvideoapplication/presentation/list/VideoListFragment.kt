@@ -11,22 +11,20 @@ import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.samadihadis.imdbvideoapplication.data.API
 import com.samadihadis.imdbvideoapplication.data.MovieModel
 import com.samadihadis.imdbvideoapplication.data.PopularMovieModel
 import com.samadihadis.imdbvideoapplication.databinding.FragmentVideoListBinding
-import com.samadihadis.imdbvideoapplication.util.gone
 import com.samadihadis.imdbvideoapplication.util.visible
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import java.io.IOException
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class VideoListFragment : Fragment() {
 
@@ -62,8 +60,8 @@ class VideoListFragment : Fragment() {
         }
     }
 
-    private fun setupAdapter() {
-        videoAdaptor = VideoAdaptor(movieList, findNavController())
+    private fun setupAdapter(movieList: List<PopularMovieModel>) {
+        videoAdaptor = VideoAdaptor(this.movieList, findNavController())
         binding.recyclerViewVideo.adapter = videoAdaptor
     }
 
@@ -76,28 +74,23 @@ class VideoListFragment : Fragment() {
     private fun getData() {
         binding.progressBarLoading.visible()
         animation?.start()
-        val client = OkHttpClient()
 
-        val request = Request.Builder()
-            .url("https://api.themoviedb.org/3/movie/popular?api_key=8f2b52cb3578ed865acfbd4d642dc062")
-            .build()
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                e.printStackTrace()
-                Log.d("tagx", "onFailure:failed")
-            }
+//"https://api.themoviedb.org/3/movie/popular?api_key=8f2b52cb3578ed865acfbd4d642dc062"
+        lifecycleScope.launch {
+            val response = Retrofit.Builder().baseUrl("https://api.themoviedb.org/3/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build().create(API::class.java)
+                .getMovie("8f2b52cb3578ed865acfbd4d642dc062")
+            onResponse(response)
+        }
+    }
 
-            override fun onResponse(call: Call, response: Response) {
-                val rawContent = response.body!!.string()
-                val result = getDataAndShowThem(rawContent)
-                movieList = result.results
-                requireActivity().runOnUiThread {
-                    setupAdapter()
-                    binding.progressBarLoading.gone()
-                    animation?.cancel()
-                }
-            }
-        })
+    private fun onResponse(response: retrofit2.Response<PopularMovieModel>) {
+        if (response != null && response.isSuccessful()) {
+
+        } else {
+            Log.d("tagX", ": response failed")
+        }
     }
 
     private fun getDataAndShowThem(rawData: String): PopularMovieModel {
@@ -115,14 +108,15 @@ class VideoListFragment : Fragment() {
 
     private fun onBackPressedCallback() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-            object : OnBackPressedCallback(true ) {
+            object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     if (doubleBackToExitPressedOnce) {
                         requireActivity().finish()
                         return
                     }
                     doubleBackToExitPressedOnce = true
-                    Toast.makeText(requireContext(), "click back button again", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "click back button again", Toast.LENGTH_SHORT)
+                        .show()
                     Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
                 }
             })
