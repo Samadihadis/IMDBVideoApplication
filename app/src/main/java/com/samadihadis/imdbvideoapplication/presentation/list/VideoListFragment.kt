@@ -11,20 +11,18 @@ import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.samadihadis.imdbvideoapplication.data.API
 import com.samadihadis.imdbvideoapplication.data.MovieModel
 import com.samadihadis.imdbvideoapplication.data.PopularMovieModel
 import com.samadihadis.imdbvideoapplication.databinding.FragmentVideoListBinding
+import com.samadihadis.imdbvideoapplication.util.RetrofitClient
+import com.samadihadis.imdbvideoapplication.util.gone
 import com.samadihadis.imdbvideoapplication.util.visible
-import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.Call
+import retrofit2.Response
 
 class VideoListFragment : Fragment() {
 
@@ -60,8 +58,8 @@ class VideoListFragment : Fragment() {
         }
     }
 
-    private fun setupAdapter(movieList: List<PopularMovieModel>) {
-        videoAdaptor = VideoAdaptor(this.movieList, findNavController())
+    private fun setupAdapter() {
+        videoAdaptor = VideoAdaptor(movieList, findNavController())
         binding.recyclerViewVideo.adapter = videoAdaptor
     }
 
@@ -70,33 +68,48 @@ class VideoListFragment : Fragment() {
         videoAdaptor?.notifyDataSetChanged()
     }
 
-
-    private fun getData() {
+    private fun showLoading(){
         binding.progressBarLoading.visible()
         animation?.start()
-
-//"https://api.themoviedb.org/3/movie/popular?api_key=8f2b52cb3578ed865acfbd4d642dc062"
-        lifecycleScope.launch {
-            val response = Retrofit.Builder().baseUrl("https://api.themoviedb.org/3/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build().create(API::class.java)
-                .getMovie("8f2b52cb3578ed865acfbd4d642dc062")
-            onResponse(response)
-        }
     }
 
-    private fun onResponse(response: retrofit2.Response<PopularMovieModel>) {
-        if (response != null && response.isSuccessful()) {
+    private fun hideLoading(){
+        animation?.cancel()
+        binding.progressBarLoading.gone()
+    }
 
+    private fun getData() {
+        showLoading()
+        RetrofitClient.apiService.getPopularMovie()
+            .enqueue(object : retrofit2.Callback<PopularMovieModel> {
+                override fun onResponse(
+                    call: Call<PopularMovieModel>,
+                    response: Response<PopularMovieModel>
+                ) {
+                    hideLoading()
+                    onServerResponse(response)
+                }
+
+                override fun onFailure(call: Call<PopularMovieModel>, t: Throwable) {
+                    hideLoading()
+                    Toast.makeText(requireContext(), "${t.localizedMessage}", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+            })
+    }
+
+    private fun onServerResponse(response: Response<PopularMovieModel>) {
+        if (response.isSuccessful) {
+            if (!response.body()?.results.isNullOrEmpty()) {
+                movieList = response.body()?.results!!
+                setupAdapter()
+            } else {
+                Toast.makeText(requireContext(), "List is Empty!", Toast.LENGTH_SHORT).show()
+            }
         } else {
-            Log.d("tagX", ": response failed")
+            Toast.makeText(requireContext(), "Got an error!", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun getDataAndShowThem(rawData: String): PopularMovieModel {
-        val gson = Gson()
-        val obj: PopularMovieModel = gson.fromJson(rawData, PopularMovieModel::class.java)
-        return obj
     }
 
     private fun initLoadingAnimator() {
