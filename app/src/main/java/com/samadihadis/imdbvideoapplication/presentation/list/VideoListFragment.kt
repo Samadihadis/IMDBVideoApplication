@@ -3,18 +3,15 @@ package com.samadihadis.imdbvideoapplication.presentation.list
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
 import com.samadihadis.imdbvideoapplication.data.MovieModel
 import com.samadihadis.imdbvideoapplication.data.PopularMovieModel
 import com.samadihadis.imdbvideoapplication.databinding.FragmentVideoListBinding
@@ -23,6 +20,7 @@ import com.samadihadis.imdbvideoapplication.util.gone
 import com.samadihadis.imdbvideoapplication.util.visible
 import retrofit2.Call
 import retrofit2.Response
+
 
 class VideoListFragment : Fragment() {
 
@@ -49,13 +47,8 @@ class VideoListFragment : Fragment() {
     }
 
     private fun initialRecycleView() {
-        binding.recyclerViewVideo.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-            val dividerItemDecoration =
-                DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-            addItemDecoration(dividerItemDecoration)
-        }
+
+        binding.recyclerViewVideo.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 
     private fun setupAdapter() {
