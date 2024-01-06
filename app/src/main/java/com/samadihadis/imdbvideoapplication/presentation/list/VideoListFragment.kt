@@ -34,8 +34,7 @@ class VideoListFragment : Fragment() {
     private var videoGridAdapter: VideoGridAdapter? = null
     private var animation: ObjectAnimator? = null
     private var doubleBackToExitPressedOnce = false
-    private var isGrid : Boolean = true
-
+    private var isGrid: Boolean = true
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -47,45 +46,51 @@ class VideoListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         cleanList()
         initLoadingAnimator()
-        initialRecycleView()
+        setupView()
         getData()
         onBackPressedCallback()
     }
 
-    private fun initialRecycleView() {
-
-        binding.fabButton.setOnClickListener {
-            if (!isGrid) {
-                val dividerItemDecoration =
-                    DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-                with(binding){
-                    recyclerViewVideo.layoutManager =
-                        LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                    recyclerViewVideo.addItemDecoration(dividerItemDecoration)
-
-                    fabButton.setImageResource(R.drawable.baseline_grid_view)
-                    setupListAdapter()
-                }
-            }else{
-                with(binding){
-                    recyclerViewVideo.layoutManager = GridLayoutManager(requireContext(), 2)
-
-                    fabButton.setImageResource(R.drawable.baseline_format_list)
-                    setupGridAdapter()
-                }
-            }
+    private fun changeFabState() = with(binding) {
+        if (!isGrid) {
+            fabButton.setImageResource(R.drawable.baseline_format_list)
+            isGrid = true
+        } else {
+            fabButton.setImageResource(R.drawable.baseline_grid_view)
+            isGrid = false
         }
-
     }
+
 
     private fun setupListAdapter() {
         videoListAdapter = VideoListAdapter(movieList, findNavController())
-        binding.recyclerViewVideo.adapter = videoListAdapter
+        with(binding.videoRecyclerView) {
+            layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL , false)
+            addItemDecoration(DividerItemDecoration(requireContext() , DividerItemDecoration.VERTICAL))
+            adapter = videoListAdapter
+        }
     }
 
     private fun setupGridAdapter() {
         videoGridAdapter = VideoGridAdapter(movieList, findNavController())
-        binding.recyclerViewVideo.adapter = videoGridAdapter
+        with(binding.videoRecyclerView){
+            layoutManager= GridLayoutManager(requireContext() , 2)
+            adapter= videoGridAdapter
+        }
+    }
+    private fun changeAdapter(){
+        if (isGrid){
+            setupGridAdapter()
+        }else{
+            setupListAdapter()
+        }
+    }
+
+    private fun setupView() = with(binding){
+        fabButton.setOnClickListener {
+            changeFabState()
+            changeAdapter()
+        }
     }
 
     private fun cleanList() {
@@ -113,6 +118,7 @@ class VideoListFragment : Fragment() {
                 ) {
                     hideLoading()
                     onServerResponse(response)
+                    changeAdapter()
                 }
 
                 override fun onFailure(call: Call<PopularMovieModel>, t: Throwable) {
@@ -128,6 +134,11 @@ class VideoListFragment : Fragment() {
         if (response.isSuccessful) {
             if (!response.body()?.results.isNullOrEmpty()) {
                 movieList = response.body()?.results!!
+                if (!isGrid) {
+                    setupListAdapter()
+                } else {
+                    setupGridAdapter()
+                }
             } else {
                 Toast.makeText(requireContext(), "List is Empty!", Toast.LENGTH_SHORT).show()
             }
