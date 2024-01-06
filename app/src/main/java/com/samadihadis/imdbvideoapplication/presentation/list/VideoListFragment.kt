@@ -11,7 +11,11 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.samadihadis.imdbvideoapplication.R
 import com.samadihadis.imdbvideoapplication.data.MovieModel
 import com.samadihadis.imdbvideoapplication.data.PopularMovieModel
 import com.samadihadis.imdbvideoapplication.databinding.FragmentVideoListBinding
@@ -26,9 +30,10 @@ class VideoListFragment : Fragment() {
 
     private lateinit var binding: FragmentVideoListBinding
     private var movieList = listOf<MovieModel>()
-    private var videoAdaptor: VideoAdaptor? = null
+    private var videoListAdapter: VideoListAdapter? = null
     private var animation: ObjectAnimator? = null
     private var doubleBackToExitPressedOnce = false
+    private var isGrid : Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -48,25 +53,44 @@ class VideoListFragment : Fragment() {
 
     private fun initialRecycleView() {
 
-        binding.recyclerViewVideo.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.fabButton.setOnClickListener {
+            if (!isGrid) {
+                val dividerItemDecoration =
+                    DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+                with(binding){
+                    recyclerViewVideo.layoutManager =
+                        LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                    recyclerViewVideo.addItemDecoration(dividerItemDecoration)
+
+                    fabButton.setImageResource(R.drawable.baseline_grid_view)
+                }
+            }else{
+                with(binding){
+                    recyclerViewVideo.layoutManager = GridLayoutManager(requireContext(), 2)
+
+                    fabButton.setImageResource(R.drawable.baseline_format_list)
+                }
+            }
+        }
+
     }
 
     private fun setupAdapter() {
-        videoAdaptor = VideoAdaptor(movieList, findNavController())
-        binding.recyclerViewVideo.adapter = videoAdaptor
+        videoListAdapter = VideoListAdapter(movieList, findNavController())
+        binding.recyclerViewVideo.adapter = videoListAdapter
     }
 
     private fun cleanList() {
         movieList = listOf()
-        videoAdaptor?.notifyDataSetChanged()
+        videoListAdapter?.notifyDataSetChanged()
     }
 
-    private fun showLoading(){
+    private fun showLoading() {
         binding.progressBarLoading.visible()
         animation?.start()
     }
 
-    private fun hideLoading(){
+    private fun hideLoading() {
         animation?.cancel()
         binding.progressBarLoading.gone()
     }
