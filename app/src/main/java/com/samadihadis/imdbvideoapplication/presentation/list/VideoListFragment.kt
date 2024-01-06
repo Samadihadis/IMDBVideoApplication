@@ -31,6 +31,7 @@ class VideoListFragment : Fragment() {
     private lateinit var binding: FragmentVideoListBinding
     private var movieList = listOf<MovieModel>()
     private var videoListAdapter: VideoListAdapter? = null
+    private var videoGridAdapter: VideoGridAdapter? = null
     private var animation: ObjectAnimator? = null
     private var doubleBackToExitPressedOnce = false
     private var isGrid : Boolean = true
@@ -63,21 +64,28 @@ class VideoListFragment : Fragment() {
                     recyclerViewVideo.addItemDecoration(dividerItemDecoration)
 
                     fabButton.setImageResource(R.drawable.baseline_grid_view)
+                    setupListAdapter()
                 }
             }else{
                 with(binding){
                     recyclerViewVideo.layoutManager = GridLayoutManager(requireContext(), 2)
 
                     fabButton.setImageResource(R.drawable.baseline_format_list)
+                    setupGridAdapter()
                 }
             }
         }
 
     }
 
-    private fun setupAdapter() {
+    private fun setupListAdapter() {
         videoListAdapter = VideoListAdapter(movieList, findNavController())
         binding.recyclerViewVideo.adapter = videoListAdapter
+    }
+
+    private fun setupGridAdapter() {
+        videoGridAdapter = VideoGridAdapter(movieList, findNavController())
+        binding.recyclerViewVideo.adapter = videoGridAdapter
     }
 
     private fun cleanList() {
@@ -120,7 +128,6 @@ class VideoListFragment : Fragment() {
         if (response.isSuccessful) {
             if (!response.body()?.results.isNullOrEmpty()) {
                 movieList = response.body()?.results!!
-                setupAdapter()
             } else {
                 Toast.makeText(requireContext(), "List is Empty!", Toast.LENGTH_SHORT).show()
             }
