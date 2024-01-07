@@ -35,6 +35,9 @@ class VideoListFragment : Fragment() {
     private var animation: ObjectAnimator? = null
     private var doubleBackToExitPressedOnce = false
     private var isGrid: Boolean = true
+    private val decoration : DividerItemDecoration by lazy {
+        DividerItemDecoration(requireContext() , DividerItemDecoration.VERTICAL)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -66,7 +69,7 @@ class VideoListFragment : Fragment() {
         videoListAdapter = VideoListAdapter(movieList, findNavController())
         with(binding.videoRecyclerView) {
             layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL , false)
-            addItemDecoration(DividerItemDecoration(requireContext() , DividerItemDecoration.VERTICAL))
+            addItemDecoration(decoration)
             adapter = videoListAdapter
         }
     }
@@ -75,6 +78,7 @@ class VideoListFragment : Fragment() {
         videoGridAdapter = VideoGridAdapter(movieList, findNavController())
         with(binding.videoRecyclerView){
             layoutManager= GridLayoutManager(requireContext() , 2)
+            removeItemDecoration(decoration)
             adapter= videoGridAdapter
         }
     }
