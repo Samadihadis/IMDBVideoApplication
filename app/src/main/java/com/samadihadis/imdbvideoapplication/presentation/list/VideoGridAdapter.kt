@@ -11,9 +11,10 @@ import com.samadihadis.imdbvideoapplication.R
 import com.samadihadis.imdbvideoapplication.data.MovieModel
 
 class VideoGridAdapter(
-private var videoList: List<MovieModel>,
-private val navController: NavController,
+    private val navController: NavController,
 ) : RecyclerView.Adapter<VideoItemGridViewHolder>() {
+
+    private var videoList: MutableList<MovieModel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoItemGridViewHolder {
         val view =
@@ -23,6 +24,16 @@ private val navController: NavController,
 
     override fun getItemCount(): Int {
         return videoList.size
+    }
+
+    fun addItem(movieModel: MovieModel) {
+        videoList.add(movieModel)
+        notifyItemInserted(videoList.size - 1)
+    }
+
+    fun addItemList(movieModelList: List<MovieModel>) {
+        videoList.addAll(movieModelList)
+        notifyItemRangeInserted(videoList.size - 1, movieModelList.size)
     }
 
     override fun onBindViewHolder(holder: VideoItemGridViewHolder, position: Int) {

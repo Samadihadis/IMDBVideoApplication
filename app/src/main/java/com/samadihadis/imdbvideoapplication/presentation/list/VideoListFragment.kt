@@ -30,14 +30,19 @@ class VideoListFragment : Fragment() {
 
     private lateinit var binding: FragmentVideoListBinding
     private var movieList = listOf<MovieModel>()
-    private var videoListAdapter: VideoListAdapter? = null
-    private var videoGridAdapter: VideoGridAdapter? = null
+    private val videoGridAdapter: VideoGridAdapter by lazy {
+        VideoGridAdapter(findNavController())
+    }
+    private val videoListAdapter: VideoListAdapter by lazy {
+        VideoListAdapter(findNavController())
+    }
     private var animation: ObjectAnimator? = null
     private var doubleBackToExitPressedOnce = false
     private var isGrid: Boolean = true
-    private val decoration : DividerItemDecoration by lazy {
-        DividerItemDecoration(requireContext() , DividerItemDecoration.VERTICAL)
+    private val decoration: DividerItemDecoration by lazy {
+        DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -66,31 +71,32 @@ class VideoListFragment : Fragment() {
 
 
     private fun setupListAdapter() {
-        videoListAdapter = VideoListAdapter(movieList, findNavController())
         with(binding.videoRecyclerView) {
-            layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL , false)
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             addItemDecoration(decoration)
             adapter = videoListAdapter
         }
+        videoListAdapter.addItemList(movieList)
     }
 
     private fun setupGridAdapter() {
-        videoGridAdapter = VideoGridAdapter(movieList, findNavController())
-        with(binding.videoRecyclerView){
-            layoutManager= GridLayoutManager(requireContext() , 2)
+        with(binding.videoRecyclerView) {
+            layoutManager = GridLayoutManager(requireContext(), 2)
             removeItemDecoration(decoration)
-            adapter= videoGridAdapter
+            adapter = videoGridAdapter
         }
+        videoGridAdapter.addItemList(movieList)
     }
-    private fun changeAdapter(){
-        if (isGrid){
+
+    private fun changeAdapter() {
+        if (isGrid) {
             setupGridAdapter()
-        }else{
+        } else {
             setupListAdapter()
         }
     }
 
-    private fun setupView() = with(binding){
+    private fun setupView() = with(binding) {
         fabButton.setOnClickListener {
             changeFabState()
             changeAdapter()
@@ -138,11 +144,6 @@ class VideoListFragment : Fragment() {
         if (response.isSuccessful) {
             if (!response.body()?.results.isNullOrEmpty()) {
                 movieList = response.body()?.results!!
-                if (!isGrid) {
-                    setupListAdapter()
-                } else {
-                    setupGridAdapter()
-                }
             } else {
                 Toast.makeText(requireContext(), "List is Empty!", Toast.LENGTH_SHORT).show()
             }
