@@ -13,19 +13,19 @@ import com.samadihadis.imdbvideoapplication.data.MovieModel
 class VideoListAdapter(
     private var videoList: List<MovieModel>,
     private val navController: NavController,
-) : RecyclerView.Adapter<VideoItemViewHolder>() {
+) : RecyclerView.Adapter<VideoItemListViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoItemListViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_video_list, parent, false)
-        return VideoItemViewHolder(view)
+        return VideoItemListViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return videoList.size
     }
 
-    override fun onBindViewHolder(holder: VideoItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: VideoItemListViewHolder, position: Int) {
         holder.apply {
             titleTextView.text = videoList[position].title
             descriptionTextView.text = videoList[position].overview

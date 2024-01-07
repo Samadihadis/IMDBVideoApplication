@@ -7,19 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import com.samadihadis.imdbvideoapplication.R
 
-class VideoItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class VideoItemGridViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     val avatarImageView: AppCompatImageView
     val titleTextView: MaterialTextView
-    val descriptionTextView: MaterialTextView
+    val buildYearTextView: MaterialTextView
     val rootLayout: ConstraintLayout
 
     init {
         view.apply {
             avatarImageView = findViewById(R.id.videoImageView)
             titleTextView = findViewById(R.id.titleTextView)
-            descriptionTextView = findViewById(R.id.descriptionTextView)
-            rootLayout = findViewById(R.id.itemVideo)
+            buildYearTextView = findViewById(R.id.buildYearTextView)
+            rootLayout = findViewById(R.id.gridRootLayout)
         }
     }
 }

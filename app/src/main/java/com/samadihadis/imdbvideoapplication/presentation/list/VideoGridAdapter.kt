@@ -13,22 +13,22 @@ import com.samadihadis.imdbvideoapplication.data.MovieModel
 class VideoGridAdapter(
 private var videoList: List<MovieModel>,
 private val navController: NavController,
-) : RecyclerView.Adapter<VideoItemViewHolder>() {
+) : RecyclerView.Adapter<VideoItemGridViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoItemGridViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_video_list, parent, false)
-        return VideoItemViewHolder(view)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_video_grid, parent, false)
+        return VideoItemGridViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return videoList.size
     }
 
-    override fun onBindViewHolder(holder: VideoItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: VideoItemGridViewHolder, position: Int) {
         holder.apply {
             titleTextView.text = videoList[position].title
-            descriptionTextView.text = videoList[position].overview
+            buildYearTextView.text = videoList[position].releaseDate
             Glide.with(holder.rootLayout.context)
                 .load("https://image.tmdb.org/t/p/w185" + videoList[position].backdropPath)
                 .placeholder(R.drawable.banner_image_placeholder)
