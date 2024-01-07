@@ -10,22 +10,33 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.samadihadis.imdbvideoapplication.R
 import com.samadihadis.imdbvideoapplication.data.MovieModel
 
-class VideoAdaptor(
-    private var videoList: List<MovieModel>,
+class VideoListAdapter(
     private val navController: NavController,
-) : RecyclerView.Adapter<VideoItemViewHolder>() {
+) : RecyclerView.Adapter<VideoItemListViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoItemViewHolder {
+    private var videoList: MutableList<MovieModel> = mutableListOf()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoItemListViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_video, parent, false)
-        return VideoItemViewHolder(view)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_video_list, parent, false)
+        return VideoItemListViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return videoList.size
     }
 
-    override fun onBindViewHolder(holder: VideoItemViewHolder, position: Int) {
+    fun addItem(movieModel: MovieModel) {
+        videoList.add(movieModel)
+        notifyItemInserted(videoList.size - 1)
+    }
+
+    fun addItemList(movieModelList: List<MovieModel>) {
+        videoList.addAll(movieModelList)
+        notifyItemRangeInserted(videoList.size - 1, movieModelList.size)
+    }
+
+    override fun onBindViewHolder(holder: VideoItemListViewHolder, position: Int) {
         holder.apply {
             titleTextView.text = videoList[position].title
             descriptionTextView.text = videoList[position].overview
